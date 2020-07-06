@@ -1,6 +1,6 @@
 {
     "name": "eduline/eduline-sms",
-    "description": "eduline-v5 sms",
+    "description": "eduline-v5 发送短信服务",
     "require": {
         "php": ">=7.1.0",
         "alibabacloud/client": "^1.5",
