@@ -32,14 +32,14 @@ class Sms implements SmsInterface
         $config = $this->getSendConfig($config);
         try {
             $msender = new SmsMultiSender(Config::get('appid'), Config::get('appkey'));
-            $result = $msender->sendWithParam("86", $phoneNumbers,
+            $result  = $msender->sendWithParam("86", $phoneNumbers,
                 $config, $templateParam, Config::get('sign_name'), "", "");
             $rsp = json_decode($result);
 
-            if($rsp->result === 0){
+            if ($rsp->result === 0) {
                 return true;
             }
-            
+
         } catch (\Exception $e) {
         }
 
@@ -83,7 +83,7 @@ class Sms implements SmsInterface
         }
 
         return [$templateParam['code']];
-        
+
         return array_values($templateParam);
     }
 
@@ -96,11 +96,10 @@ class Sms implements SmsInterface
      */
     protected function getSendConfig($sendConfig)
     {
-        $sendConfig = $sendConfig ?: 'template_code';
-        if (is_string($sendConfig) && $sendConfig) {
-            return Config::get($sendConfig);
+        if (is_array($sendConfig) && $sendConfig) {
+            return $sendConfig['TemplateCode'] ?? array_shift($sendConfig);
         }
 
-        return [];
+        return Config::get('template_code');
     }
 }
