@@ -1,22 +1,23 @@
 <?php
-declare (strict_types = 1);
+declare (strict_types=1);
+
 namespace eduline\sms\providers\aliyun;
 
 use AlibabaCloud\Client\AlibabaCloud;
 use AlibabaCloud\Client\Exception\ClientException;
 use AlibabaCloud\Client\Exception\ServerException;
 use eduline\sms\interfaces\SmsInterface;
-use eduline\sms\providers\aliyun\Config;
 use think\facade\Validate;
 
 class Sms implements SmsInterface
 {
     /**
      * 发送接口
-     * @Author   Martinsun<syh@sunyonghong.com>
-     * @DateTime 2020-04-07
+     * Author   Martinsun<syh@sunyonghong.com>
+     * Date:  2020-04-07
+     *
      * @param    [type]                         $phoneNumbers [description]
-     * @param    string                         $code         [description]
+     * @param string $code [description]
      * @param    [type]                         $config       [description]
      * @return   [type]                                       [description]
      */
@@ -42,11 +43,11 @@ class Sms implements SmsInterface
 
         try {
             AlibabaCloud::accessKeyClient(Config::get('accessKey_id'), Config::get('accessKey_secret'))
-            ->regionId('cn-hangzhou')
-            ->asDefaultClient();
+                ->regionId('cn-hangzhou')
+                ->asDefaultClient();
             $result = AlibabaCloud::rpc()
                 ->product('Dysmsapi')
-            // ->scheme('https') // https | http
+                // ->scheme('https') // https | http
                 ->version('2017-05-25')
                 ->action('SendSms')
                 ->method('POST')
@@ -69,8 +70,9 @@ class Sms implements SmsInterface
 
     /**
      * 获取发送的手机号
-     * @Author   Martinsun<syh@sunyonghong.com>
-     * @DateTime 2019-06-03
+     * Author   Martinsun<syh@sunyonghong.com>
+     * Date:  2019-06-03
+     *
      * @param    [type]                         $phoneNumbers [description]
      * @return   [type]                                       [description]
      */
@@ -90,8 +92,9 @@ class Sms implements SmsInterface
 
     /**
      * 获取模板参数
-     * @Author   Martinsun<syh@sunyonghong.com>
-     * @DateTime 2019-06-02
+     * Author   Martinsun<syh@sunyonghong.com>
+     * Date:  2019-06-02
+     *
      * @param    [type]                         $templateParam [description]
      * @return   [type]                                        [description]
      */
@@ -108,8 +111,9 @@ class Sms implements SmsInterface
 
     /**
      * 获取发送短信配置数据
-     * @Author   Martinsun<syh@sunyonghong.com>
-     * @DateTime 2019-06-02
+     * Author   Martinsun<syh@sunyonghong.com>
+     * Date:  2019-06-02
+     *
      * @param    [type]                         $sendConfig [description]
      * @return   [type]                                     [description]
      */

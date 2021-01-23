@@ -1,18 +1,20 @@
 <?php
-declare (strict_types = 1);
+declare (strict_types=1);
+
 namespace eduline\sms;
 
 class Provider
 {
     /**
      * 获取储存空间列表
-     * @Author   Martinsun<syh@sunyonghong.com>
-     * @DateTime 2020-03-27
+     * Author   Martinsun<syh@sunyonghong.com>
+     * Date:  2020-03-27
+     *
      * @return   [type]                         [description]
      */
     public static function getProviders()
     {
-        $dir    = __DIR__ . '/' . 'providers';
+        $dir       = __DIR__ . '/' . 'providers';
         $providers = [];
         // 遍历文件夹
         if ($dh = opendir($dir)) {
@@ -33,9 +35,10 @@ class Provider
 
     /**
      * 获取配置界面表单
-     * @Author   Martinsun<syh@sunyonghong.com>
-     * @DateTime 2020-03-28
-     * @param    string                         $provider [description]
+     * Author   Martinsun<syh@sunyonghong.com>
+     * Date:  2020-03-28
+     *
+     * @param string $provider [description]
      * @return   [type]                                [description]
      */
     public static function getProviderConfigPage(string $provider)
@@ -47,9 +50,10 @@ class Provider
 
     /**
      * 获取储存配置字段信息
-     * @Author   Martinsun<syh@sunyonghong.com>
-     * @DateTime 2020-03-27
-     * @param    string                         $provider 储存端标识
+     * Author   Martinsun<syh@sunyonghong.com>
+     * Date:  2020-03-27
+     *
+     * @param string $provider 储存端标识
      * @return   [type]                                [description]
      */
     public static function getProviderConfig(string $provider, $getClass = false)

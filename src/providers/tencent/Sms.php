@@ -1,9 +1,10 @@
 <?php
-declare (strict_types = 1);
+declare (strict_types=1);
+
 namespace eduline\sms\providers\tencent;
 
 use eduline\sms\interfaces\SmsInterface;
-use eduline\sms\providers\tencent\Config;
+use Exception;
 use Qcloud\Sms\SmsMultiSender;
 use think\facade\Validate;
 
@@ -11,10 +12,11 @@ class Sms implements SmsInterface
 {
     /**
      * 发送接口
-     * @Author   Martinsun<syh@sunyonghong.com>
-     * @DateTime 2020-04-07
+     * Author   Martinsun<syh@sunyonghong.com>
+     * Date:  2020-04-07
+     *
      * @param    [type]                         $phoneNumbers [description]
-     * @param    string                         $code         [description]
+     * @param string $code [description]
      * @param    [type]                         $config       [description]
      * @return   [type]                                       [description]
      */
@@ -34,13 +36,13 @@ class Sms implements SmsInterface
             $msender = new SmsMultiSender(Config::get('appid'), Config::get('appkey'));
             $result  = $msender->sendWithParam("86", $phoneNumbers,
                 $config, $templateParam, Config::get('sign_name'), "", "");
-            $rsp = json_decode($result);
+            $rsp     = json_decode($result);
 
             if ($rsp->result === 0) {
                 return true;
             }
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
         }
 
         return false;
@@ -48,8 +50,9 @@ class Sms implements SmsInterface
 
     /**
      * 获取发送的手机号
-     * @Author   Martinsun<syh@sunyonghong.com>
-     * @DateTime 2019-06-03
+     * Author   Martinsun<syh@sunyonghong.com>
+     * Date:  2019-06-03
+     *
      * @param    [type]                         $phoneNumbers [description]
      * @return   [type]                                       [description]
      */
@@ -69,8 +72,9 @@ class Sms implements SmsInterface
 
     /**
      * 获取模板参数
-     * @Author   Martinsun<syh@sunyonghong.com>
-     * @DateTime 2019-06-02
+     * Author   Martinsun<syh@sunyonghong.com>
+     * Date:  2019-06-02
+     *
      * @param    [type]                         $templateParam [description]
      * @return   [type]                                        [description]
      */
@@ -89,8 +93,9 @@ class Sms implements SmsInterface
 
     /**
      * 获取发送短信配置数据
-     * @Author   Martinsun<syh@sunyonghong.com>
-     * @DateTime 2019-06-02
+     * Author   Martinsun<syh@sunyonghong.com>
+     * Date:  2019-06-02
+     *
      * @param    [type]                         $sendConfig [description]
      * @return   [type]                                     [description]
      */

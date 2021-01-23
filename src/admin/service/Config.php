@@ -1,5 +1,6 @@
 <?php
-declare (strict_types = 1);
+declare (strict_types=1);
+
 namespace eduline\sms\admin\service;
 
 use app\admin\logic\system\Config as SystemConfig;
@@ -14,8 +15,9 @@ class Config extends BaseService
 {
     /**
      * 上传列表
-     * @Author   Martinsun<syh@sunyonghong.com>
-     * @DateTime 2020-03-27
+     * Author   Martinsun<syh@sunyonghong.com>
+     * Date:  2020-03-27
+     *
      * @return   [type]                         [description]
      */
     public function index()
@@ -49,8 +51,9 @@ class Config extends BaseService
 
     /**
      * 上传配置
-     * @Author   Martinsun<syh@sunyonghong.com>
-     * @DateTime 2020-03-27
+     * Author   Martinsun<syh@sunyonghong.com>
+     * Date:  2020-03-27
+     *
      * @return   [type]                         [description]
      */
     public function config($provider)
@@ -63,15 +66,16 @@ class Config extends BaseService
 
     /**
      * 短信验证码配置
-     * @Author   Martinsun<syh@sunyonghong.com>
-     * @DateTime 2020-04-17
+     * Author   Martinsun<syh@sunyonghong.com>
+     * Date:  2020-04-17
+     *
      * @return   [type]                         [description]
      */
     public function verify()
     {
         $key    = 'system.package.sms.verify';
         $fields = [
-            'length'  => FormItem::make('inputNumber')->title('验证码位数')->min(4)->max(6)->help('可配置4-6位短信验证码')
+            'length' => FormItem::make('inputNumber')->title('验证码位数')->min(4)->max(6)->help('可配置4-6位短信验证码')
         ];
 
         $form          = new PageForm();

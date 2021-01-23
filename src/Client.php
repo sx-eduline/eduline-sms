@@ -1,5 +1,6 @@
 <?php
-declare (strict_types = 1);
+declare (strict_types=1);
+
 namespace eduline\sms;
 
 use app\admin\logic\system\Config as SystemConfig;
@@ -18,7 +19,7 @@ class Client
         $class = __NAMESPACE__ . '\\providers\\' . $sms['provider'] . '\\Sms';
 
         $provider = new $class();
-        
+
         return $provider->send($phoneNumbers, $templateParam, $config);
     }
 }

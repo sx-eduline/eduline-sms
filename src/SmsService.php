@@ -1,4 +1,5 @@
 <?php
+
 namespace eduline\sms;
 
 use think\facade\Route;
