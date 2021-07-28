@@ -10,7 +10,7 @@ class Client
 {
     public static function send($phoneNumbers, $templateParam = [], $config = [])
     {
-        $sms = SystemConfig::get('system.package.sms', []);
+        $sms = SystemConfig::get('system.package.sms', [], request()->mhm_id);
         if (!$sms) {
             throw new ConfigException('短信配置错误', '短信发送失败');
         }

@@ -23,13 +23,13 @@ class Config extends BaseService
     public function index()
     {
         $data = Provider::getProviders();
-        $sms  = SystemConfig::get('system.package.sms');
+        $sms  = SystemConfig::get('system.package.sms', [], request()->mhm_id);
         // 查询配置
         foreach ($data as $key => $provider) {
             // 储存配置key
             $__key                = 'system.package.upload.' . $provider['key'];
             $data[$key]['__key']  = $__key;
-            $data[$key]['config'] = SystemConfig::get($__key);
+            $data[$key]['config'] = SystemConfig::get($__key, [], request()->mhm_id);
             $data[$key]['status'] = (isset($sms['provider']) && $sms['provider'] == $provider['key']) ? 1 : 0;
         }
         // 定义字段
@@ -81,7 +81,7 @@ class Config extends BaseService
         $form          = new PageForm();
         $form->pageKey = $fields;
         $form->withSystemConfig();
-        $config          = SystemConfig::get($key, []);
+        $config          = SystemConfig::get($key, [], request()->mhm_id);
         $config['__key'] = $key;
         $form->datas     = $config;
 
