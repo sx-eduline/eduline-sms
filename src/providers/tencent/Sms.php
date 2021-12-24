@@ -86,8 +86,6 @@ class Sms implements SmsInterface
             ];
         }
 
-        return [$templateParam['code']];
-
         return array_values($templateParam);
     }
 
